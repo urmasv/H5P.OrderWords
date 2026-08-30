@@ -1,0 +1,322 @@
+{
+  "semantics": [
+    {
+      "label": "Vastamisviis",
+      "default": "drag",
+      "options": [
+        {
+          "label": "Lohista lünkadesse"
+        },
+        {
+          "label": "Kirjuta lünkadesse"
+        },
+        {
+          "label": "Vali rippmenüüst"
+        }
+      ]
+    },
+    {
+      "label": "Millised sõnad?",
+      "default": "all",
+      "options": [
+        {
+          "label": "Ainult markeritega tähistatud sõnad"
+        },
+        {
+          "label": "Kogu tekst"
+        }
+      ]
+    },
+    {
+      "label": "Juhis õppijale",
+      "default": "Paiguta sõnad õigesse kohta."
+    },
+    {
+      "label": "Tekst",
+      "description": "Paigutamisviis: sisesta iga lause eraldi reale. Iga sõna saab oma lahtri, kirjavahemärgid jäävad omale kohale ja markerid hoiavad mitmesõnalise fraasi koos ühe klotsina, nt Ta elab [New Yorgis]. Lünkade viisid (kirjutamine, rippmenüü, lohistamine): kasuta vastuste märkimiseks markereid, nt [vastus], [vastus|alternatiiv] või [!!] tühja õige vastuse jaoks. Markeri sümboleid ei kuvata teksti osana.",
+      "default": "Täna on ilus päev."
+    },
+    {
+      "label": "Täiendavad vastusevalikud",
+      "description": "Segajasõnad või -vastused. Režiimis „Lohista lünkadesse / Kogu tekst” vastab iga siinne rida väljal „Tekst” samal real olevale lausele/lõigule; Enter määrab lausete/lõikude piiri. Jäta rida tühjaks, kui vastava Teksti rea juurde lisavalikuid ei ole. Kui vajad lisavalikuid ainult teise Teksti rea juurde, kirjuta need siin teisele reale. Sama rea lisavalikud eralda komadega. Teistes vastamisviisides võib valikud eraldada komade või reavahetustega."
+    },
+    {
+      "label": "Rippmenüü vastusevalikud",
+      "description": "Ainult rippmenüü viisis: vali, mitu vastusevalikut iga rippmenüü kuvab.",
+      "default": "some",
+      "options": [
+        {
+          "label": "Osad vastusevalikud"
+        },
+        {
+          "label": "Kõik vastusevalikud"
+        }
+      ]
+    },
+    {
+      "label": "Mitu vastusevalikut?",
+      "description": "Mitu valikut iga rippmenüü kuvab, võetuna kõigi vastuste ja segajate koguhulgast. Õige vastus on alati kaasas."
+    },
+    {
+      "label": "Vastusevalikute asukoht",
+      "description": "Vali, kus kuvatakse sõnapank / lohistatavad vastused.",
+      "default": "bottom",
+      "options": [
+        {
+          "label": "Teksti all"
+        },
+        {
+          "label": "Teksti kohal"
+        },
+        {
+          "label": "Teksti all ja kohal"
+        }
+      ]
+    },
+    {
+      "label": "Lisa pilt",
+      "description": "Valikuline pilt, mida kuvatakse vastuse teksti kohal või sellest vasakul. Lae fail üles või sisesta pildi URL.",
+      "fields": [
+        {
+          "label": "Pilt (üleslaadimine)"
+        },
+        {
+          "label": "Pildi URL",
+          "description": "Kasutatakse ainult siis, kui ülal pole pilti üles laaditud. Sisesta täielik https:// aadress."
+        },
+        {
+          "label": "Alternatiivtekst"
+        },
+        {
+          "label": "Pildi asukoht",
+          "options": [
+            {
+              "label": "Teksti kohal"
+            },
+            {
+              "label": "Tekstist vasakul"
+            }
+          ]
+        },
+        {
+          "label": "Laiuse ühik",
+          "options": [
+            {
+              "label": "%"
+            },
+            {
+              "label": "px"
+            }
+          ]
+        },
+        {
+          "label": "Pildi laius",
+          "description": "Jäta tühjaks, et kasutada pildi enda suurust. Külgede suhe säilib alati."
+        }
+      ]
+    },
+    {
+      "label": "Ridade pildid",
+      "description": "Lisa pilt teksti reale. Esimene element kuulub esimese rea juurde, teine teise rea juurde jne. Jäta element tühjaks (ei üleslaadimist ega URL-i), et see rida pildita jätta.",
+      "entity": "rida",
+      "field": {
+        "label": "Rea pilt",
+        "fields": [
+          {
+            "label": "Pilt (üleslaadimine)"
+          },
+          {
+            "label": "Pildi URL",
+            "description": "Kasutatakse ainult siis, kui ülal pole pilti üles laaditud. Sisesta täielik https:// aadress."
+          },
+          {
+            "label": "Alternatiivtekst"
+          },
+          {
+            "label": "Pildi asukoht",
+            "options": [
+              {
+                "label": "Teksti kohal"
+              },
+              {
+                "label": "Tekstist vasakul"
+              }
+            ]
+          },
+          {
+            "label": "Laiuse ühik",
+            "options": [
+              {
+                "label": "%"
+              },
+              {
+                "label": "px"
+              }
+            ]
+          },
+          {
+            "label": "Pildi laius",
+            "description": "Jäta tühjaks, et kasutada pildi enda suurust. Külgede suhe säilib alati."
+          }
+        ]
+      }
+    },
+    {
+      "label": "Käitumise seaded",
+      "fields": [
+        {
+          "label": "Markerid",
+          "description": "Markeripaar. Lünkade viisides märgib hinnatavad vastused; paigutamisviisis hoiab mitmesõnalise fraasi koos ühe klotsina.",
+          "default": "[]",
+          "options": [
+            {
+              "label": "[ ]  –  [vastus]"
+            },
+            {
+              "label": "{ }  –  {vastus}"
+            },
+            {
+              "label": "# #  –  #vastus#"
+            },
+            {
+              "label": "@ @  –  @vastus@"
+            },
+            {
+              "label": "* *  –  *vastus*"
+            }
+          ]
+        },
+        {
+          "label": "Alternatiivse vastuse eraldaja",
+          "description": "Kasuta seda lünkade viisides markeritega vastuse sees, nt [kass|koer].",
+          "default": "|"
+        },
+        {
+          "label": "Sega vastusevalikud",
+          "description": "Segab paigutamisviisis sõnapanga ning rippmenüü ja lohistamise viisides valikud."
+        },
+        {
+          "label": "Hindamine paigutamisviisis",
+          "description": "Vali, kas punkti annab iga õigesse lahtrisse pandud sõna või iga täiesti õige lause. Lünkade viisid annavad alati ühe punkti lünga kohta.",
+          "default": "position",
+          "options": [
+            {
+              "label": "Üks punkt iga õiges lahtris oleva sõna eest"
+            },
+            {
+              "label": "Üks punkt iga täiesti õige lause eest"
+            }
+          ]
+        },
+        {
+          "label": "Lünga ja lahtri laius",
+          "description": "Vali, kas kõik lüngad/lahtrid on sama laiusega või sõltub iga laius vastuse pikkusest. Kehtib paigutamise, kirjutamise ja lohistamise viisides.",
+          "default": "byAnswer",
+          "options": [
+            {
+              "label": "Laius sõltub vastuse pikkusest"
+            },
+            {
+              "label": "Kõik lüngad/lahtrid on sama laiusega"
+            }
+          ]
+        },
+        {
+          "label": "Luba uuesti proovida"
+        },
+        {
+          "label": "Kuva puudu olnud vastused",
+          "description": "Kontrollimisel kuvatakse ka vastused, mille õppija jättis õigesti andmata (need, mis on oranžiga). Lülita välja, et neid mitte kuvada."
+        }
+      ]
+    },
+    {
+      "label": "Tekstid ja tõlked",
+      "fields": [
+        {
+          "label": "Kontrollimisnupu tekst",
+          "default": "Kontrolli"
+        },
+        {
+          "label": "Uuesti proovimise nupu tekst",
+          "default": "Proovi uuesti"
+        },
+        {
+          "label": "Tagasiside täiesti õige vastuse korral",
+          "default": "Kõik õige!"
+        },
+        {
+          "label": "Tulemuse tekst",
+          "description": "Saadaolevad muutujad: @score ja @max.",
+          "default": "Tulemus: @score / @max"
+        },
+        {
+          "label": "Õigete arvu tekst",
+          "description": "Saadaolev muutuja: @count.",
+          "default": "Õigeid: @count"
+        },
+        {
+          "label": "Valede arvu tekst",
+          "description": "Saadaolev muutuja: @count.",
+          "default": "Valesid: @count"
+        },
+        {
+          "label": "Puuduvate arvu tekst",
+          "description": "Saadaolev muutuja: @count.",
+          "default": "Puuduvaid: @count"
+        },
+        {
+          "label": "Tühja sisu teade",
+          "default": "Autor ei ole lisanud ühtegi teksti."
+        },
+        {
+          "label": "Õige vastuse sildi eesliide",
+          "default": "Õige vastus:"
+        },
+        {
+          "label": "Rippmenüü kohatäide",
+          "default": "vali..."
+        },
+        {
+          "label": "Tühja vastuse silt",
+          "default": "tühi"
+        },
+        {
+          "label": "Lünga ligipääsetavuse silt",
+          "description": "Muutuja @num asendatakse lünga numbriga.",
+          "default": "Vastuseväli @num"
+        },
+        {
+          "label": "Liigse teksti markeri silt",
+          "default": "Liigne tekst"
+        },
+        {
+          "label": "Puuduva teksti markeri silt",
+          "default": "Puuduv tekst"
+        },
+        {
+          "label": "Sõnapanga ligipääsetavuse silt",
+          "default": "Sõnapank"
+        },
+        {
+          "label": "Sõnalahtri ligipääsetavuse silt",
+          "description": "Muutuja @num asendatakse lahtri numbriga.",
+          "default": "Sõnalahter @num"
+        },
+        {
+          "label": "Lause pealkiri",
+          "description": "Kuvatakse, kui lauseid on rohkem kui üks. Muutuja @num asendatakse lause numbriga.",
+          "default": "Lause @num"
+        },
+        {
+          "label": "Sõna lisamise vihje",
+          "default": "Lisa sõna vastusesse"
+        },
+        {
+          "label": "Sõna eemaldamise vihje",
+          "default": "Eemalda sõna vastusest"
+        }
+      ]
+    }
+  ]
+}

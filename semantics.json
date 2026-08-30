@@ -1,0 +1,594 @@
+[
+  {
+    "name": "mode",
+    "type": "select",
+    "label": "Answering mode",
+    "importance": "high",
+    "default": "drag",
+    "options": [
+      {
+        "value": "drag",
+        "label": "Drag into gaps"
+      },
+      {
+        "value": "input",
+        "label": "Type into gaps"
+      },
+      {
+        "value": "dropdown",
+        "label": "Choose from dropdown"
+      }
+    ]
+  },
+  {
+    "name": "dragScope",
+    "type": "select",
+    "label": "Which words?",
+    "importance": "high",
+    "default": "all",
+    "options": [
+      {
+        "value": "marked",
+        "label": "Only words marked with markers"
+      },
+      {
+        "value": "all",
+        "label": "Whole text"
+      }
+    ],
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "drag"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "taskDescription",
+    "type": "text",
+    "widget": "html",
+    "label": "Instructions for the learner",
+    "importance": "high",
+    "default": "Place the words in the correct order.",
+    "optional": true,
+    "tags": [
+      "p",
+      "br",
+      "strong",
+      "em",
+      "u",
+      "ul",
+      "ol",
+      "li",
+      "a",
+      "span",
+      "sub",
+      "sup"
+    ]
+  },
+  {
+    "name": "correctText",
+    "type": "text",
+    "widget": "textarea",
+    "label": "Text",
+    "importance": "high",
+    "default": "Today is a beautiful day.",
+    "description": "Ordering mode: enter one sentence per line. Every word gets its own slot, punctuation stays in place, and markers keep a multi-word phrase together as one tile, e.g. Ta elab [New Yorgis]. Gap modes (typing, dropdown, dragging): use markers to mark answers, e.g. [answer], [answer|alternative] or [!!] for an empty correct answer. The marker symbols are not displayed as part of the text."
+  },
+  {
+    "name": "extraOptions",
+    "type": "text",
+    "widget": "textarea",
+    "label": "Additional answer options",
+    "importance": "medium",
+    "optional": true,
+    "description": "Distractor words or answers. In Drag into gaps / Whole text mode, each line here belongs to the same line/paragraph in Text; Enter separates sentences/paragraphs. Leave a line empty if that Text line must not get extra options. If you need extra options only for the second Text line, put the options on the second line here. Within one line, separate options with commas. In other answering modes, options may be separated with commas or line breaks."
+  },
+  {
+    "name": "dropdownOptionsMode",
+    "type": "select",
+    "label": "Dropdown answer options",
+    "description": "Choose how many answer options each dropdown shows.",
+    "default": "some",
+    "options": [
+      {
+        "value": "some",
+        "label": "Some answer options"
+      },
+      {
+        "value": "all",
+        "label": "All answer options"
+      }
+    ],
+    "widget": "showWhen",
+    "showWhen": {
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "dropdown"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "dropdownOptionCount",
+    "type": "number",
+    "label": "How many answer options?",
+    "description": "How many options each dropdown shows, drawn from the full pool of answers and distractors. The correct answer is always included.",
+    "default": 4,
+    "min": 1,
+    "widget": "showWhen",
+    "showWhen": {
+      "type": "and",
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "dropdown"
+          ]
+        },
+        {
+          "field": "dropdownOptionsMode",
+          "equals": [
+            "some"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "dragOptionsPosition",
+    "type": "select",
+    "label": "Answer options position",
+    "description": "Choose where the word bank / draggable answers are displayed.",
+    "default": "bottom",
+    "options": [
+      {
+        "value": "bottom",
+        "label": "Below the text"
+      },
+      {
+        "value": "top",
+        "label": "Above the text"
+      },
+      {
+        "value": "both",
+        "label": "Below and above the text"
+      }
+    ],
+    "widget": "showWhen",
+    "showWhen": {
+      "type": "and",
+      "detach": true,
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "drag"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "image",
+    "type": "group",
+    "label": "Add image",
+    "importance": "medium",
+    "description": "Optional image shown above or to the left of the answer text. Upload a file or paste an image URL.",
+    "optional": true,
+    "fields": [
+      {
+        "name": "file",
+        "type": "image",
+        "label": "Image (upload)",
+        "optional": true
+      },
+      {
+        "name": "url",
+        "type": "text",
+        "label": "Image URL",
+        "optional": true,
+        "description": "Used only when no image is uploaded above. Paste a full https:// address."
+      },
+      {
+        "name": "alt",
+        "type": "text",
+        "label": "Alternative text",
+        "optional": true
+      },
+      {
+        "name": "position",
+        "type": "select",
+        "label": "Image position",
+        "default": "above",
+        "options": [
+          {
+            "value": "above",
+            "label": "Above the text"
+          },
+          {
+            "value": "left",
+            "label": "To the left of the text"
+          }
+        ]
+      },
+      {
+        "name": "widthMode",
+        "type": "select",
+        "label": "Width unit",
+        "default": "percent",
+        "options": [
+          {
+            "value": "percent",
+            "label": "%"
+          },
+          {
+            "value": "px",
+            "label": "px"
+          }
+        ]
+      },
+      {
+        "name": "width",
+        "type": "number",
+        "label": "Image width",
+        "optional": true,
+        "min": 1,
+        "description": "Leave empty to keep the image's own size. The aspect ratio is always preserved."
+      }
+    ],
+    "widget": "showWhen",
+    "showWhen": {
+      "type": "or",
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "input",
+            "dropdown"
+          ]
+        },
+        {
+          "field": "dragScope",
+          "equals": [
+            "marked"
+          ]
+        }
+      ]
+    },
+    "expanded": false
+  },
+  {
+    "name": "lineImages",
+    "type": "list",
+    "label": "Line images",
+    "importance": "medium",
+    "optional": true,
+    "entity": "line",
+    "description": "Add an image for a line of the Text. The first item belongs to the first line, the second to the second line, and so on. Leave an item empty (no upload and no URL) to skip that line.",
+    "widget": "showWhen",
+    "showWhen": {
+      "type": "and",
+      "rules": [
+        {
+          "field": "mode",
+          "equals": [
+            "drag"
+          ]
+        },
+        {
+          "field": "dragScope",
+          "equals": [
+            "all"
+          ]
+        }
+      ],
+      "numberItems": true
+    },
+    "field": {
+      "name": "lineImage",
+      "type": "group",
+      "label": "Line image",
+      "fields": [
+        {
+          "name": "file",
+          "type": "image",
+          "label": "Image (upload)",
+          "optional": true
+        },
+        {
+          "name": "url",
+          "type": "text",
+          "label": "Image URL",
+          "optional": true,
+          "description": "Used only when no image is uploaded above. Paste a full https:// address."
+        },
+        {
+          "name": "alt",
+          "type": "text",
+          "label": "Alternative text",
+          "optional": true
+        },
+        {
+          "name": "position",
+          "type": "select",
+          "label": "Image position",
+          "default": "above",
+          "options": [
+            {
+              "value": "above",
+              "label": "Above the text"
+            },
+            {
+              "value": "left",
+              "label": "To the left of the text"
+            }
+          ]
+        },
+        {
+          "name": "widthMode",
+          "type": "select",
+          "label": "Width unit",
+          "default": "percent",
+          "options": [
+            {
+              "value": "percent",
+              "label": "%"
+            },
+            {
+              "value": "px",
+              "label": "px"
+            }
+          ]
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "label": "Image width",
+          "optional": true,
+          "min": 1,
+          "description": "Leave empty to keep the image's own size. The aspect ratio is always preserved."
+        }
+      ],
+      "expanded": false
+    }
+  },
+  {
+    "name": "behaviour",
+    "type": "group",
+    "label": "Behaviour settings",
+    "importance": "low",
+    "fields": [
+      {
+        "name": "delimiters",
+        "type": "select",
+        "label": "Markers",
+        "description": "Marker pair. In gap modes it marks the scored answers; in ordering mode it keeps a multi-word phrase together as one tile.",
+        "default": "[]",
+        "options": [
+          {
+            "value": "[]",
+            "label": "[ ]  –  [answer]"
+          },
+          {
+            "value": "{}",
+            "label": "{ }  –  {answer}"
+          },
+          {
+            "value": "##",
+            "label": "# #  –  #answer#"
+          },
+          {
+            "value": "@@",
+            "label": "@ @  –  @answer@"
+          },
+          {
+            "value": "*",
+            "label": "* *  –  *answer*"
+          }
+        ]
+      },
+      {
+        "name": "optionSeparator",
+        "type": "text",
+        "label": "Alternative answer separator",
+        "description": "Use this inside a marked answer in gap modes, e.g. [cat|dog].",
+        "default": "|",
+        "maxLength": 4,
+        "widget": "textarea"
+      },
+      {
+        "name": "shuffleOptions",
+        "type": "boolean",
+        "label": "Shuffle answer options",
+        "description": "Shuffles the word bank in ordering mode and the options in dropdown and dragging modes.",
+        "default": true
+      },
+      {
+        "name": "scoreMode",
+        "type": "select",
+        "label": "Scoring in ordering mode",
+        "description": "Choose whether each correctly placed word gives a point or each fully correct sentence gives a point. Gap modes always give one point per gap.",
+        "default": "position",
+        "options": [
+          {
+            "value": "position",
+            "label": "One point per word in the correct slot"
+          },
+          {
+            "value": "sentence",
+            "label": "One point per fully correct sentence"
+          }
+        ]
+      },
+      {
+        "name": "gapInputWidthMode",
+        "type": "select",
+        "label": "Gap and slot width",
+        "description": "Choose whether all gaps/slots have the same width or each width follows the length of its answer. Applies to the ordering, typing and dragging modes.",
+        "default": "byAnswer",
+        "options": [
+          {
+            "value": "byAnswer",
+            "label": "Width depends on the answer length"
+          },
+          {
+            "value": "uniform",
+            "label": "All gaps/slots have the same width"
+          }
+        ]
+      },
+      {
+        "name": "enableRetry",
+        "type": "boolean",
+        "label": "Allow retry",
+        "default": true
+      },
+      {
+        "name": "showMissingAnswers",
+        "type": "boolean",
+        "label": "Show missing answers",
+        "description": "When checking, also show the answers the learner did not give correctly (the ones marked in orange). Turn off to hide them.",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "l10n",
+    "type": "group",
+    "label": "Texts and translations",
+    "importance": "low",
+    "common": true,
+    "fields": [
+      {
+        "name": "checkAnswer",
+        "type": "text",
+        "label": "Check button text",
+        "default": "Check"
+      },
+      {
+        "name": "tryAgain",
+        "type": "text",
+        "label": "Retry button text",
+        "default": "Try again"
+      },
+      {
+        "name": "correctFeedback",
+        "type": "text",
+        "label": "Feedback for a completely correct answer",
+        "default": "Everything is correct!"
+      },
+      {
+        "name": "yourResult",
+        "type": "text",
+        "label": "Result text",
+        "default": "Result: @score / @max",
+        "description": "Available variables: @score and @max."
+      },
+      {
+        "name": "correctText",
+        "type": "text",
+        "label": "Correct count text",
+        "default": "Correct: @count",
+        "description": "Available variable: @count."
+      },
+      {
+        "name": "wrongText",
+        "type": "text",
+        "label": "Wrong count text",
+        "default": "Wrong: @count",
+        "description": "Available variable: @count."
+      },
+      {
+        "name": "missingCountText",
+        "type": "text",
+        "label": "Missing count text",
+        "default": "Missing: @count",
+        "description": "Available variable: @count."
+      },
+      {
+        "name": "emptyContent",
+        "type": "text",
+        "label": "Empty content message",
+        "default": "The author has not added any text."
+      },
+      {
+        "name": "solutionPrefix",
+        "type": "text",
+        "label": "Correct answer label prefix",
+        "default": "Correct answer:"
+      },
+      {
+        "name": "selectPlaceholder",
+        "type": "text",
+        "label": "Dropdown placeholder",
+        "default": "choose..."
+      },
+      {
+        "name": "emptyGap",
+        "type": "text",
+        "label": "Empty answer label",
+        "default": "empty"
+      },
+      {
+        "name": "gapLabel",
+        "type": "text",
+        "label": "Gap accessibility label",
+        "default": "Answer field @num",
+        "description": "The variable @num is replaced by the gap number."
+      },
+      {
+        "name": "extraText",
+        "type": "text",
+        "label": "Extra text marker label",
+        "default": "Extra text"
+      },
+      {
+        "name": "missingText",
+        "type": "text",
+        "label": "Missing text marker label",
+        "default": "Missing text"
+      },
+      {
+        "name": "poolLabel",
+        "type": "text",
+        "label": "Word bank accessibility label",
+        "default": "Word bank"
+      },
+      {
+        "name": "slotLabel",
+        "type": "text",
+        "label": "Word slot accessibility label",
+        "default": "Word slot @num",
+        "description": "The variable @num is replaced by the slot number."
+      },
+      {
+        "name": "sentenceLabel",
+        "type": "text",
+        "label": "Sentence heading",
+        "default": "Sentence @num",
+        "description": "Shown when there is more than one sentence. The variable @num is replaced by the sentence number."
+      },
+      {
+        "name": "addWord",
+        "type": "text",
+        "label": "Add word tooltip",
+        "default": "Add word to the answer"
+      },
+      {
+        "name": "removeWord",
+        "type": "text",
+        "label": "Remove word tooltip",
+        "default": "Remove word from the answer"
+      }
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "title": "Place Words",
+  "machineName": "H5P.OrderWords",
+  "majorVersion": 1,
+  "minorVersion": 2,
+  "patchVersion": 56,
+  "runnable": 1,
+  "author": "UrmasV",
+  "license": "MIT",
+  "embedTypes": [
+    "iframe"
+  ],
+  "preloadedJs": [
+    {
+      "path": "js/orderwords.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "css/orderwords.css"
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.PlaceWordsShowWhen",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ],
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 24
+  }
+}

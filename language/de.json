@@ -1,0 +1,322 @@
+{
+  "semantics": [
+    {
+      "label": "Antwortmodus",
+      "default": "drag",
+      "options": [
+        {
+          "label": "In Lücken ziehen"
+        },
+        {
+          "label": "In Lücken tippen"
+        },
+        {
+          "label": "Aus Dropdown wählen"
+        }
+      ]
+    },
+    {
+      "label": "Welche Wörter?",
+      "default": "all",
+      "options": [
+        {
+          "label": "Nur mit Markierungen markierte Wörter"
+        },
+        {
+          "label": "Gesamter Text"
+        }
+      ]
+    },
+    {
+      "label": "Anweisungen für Lernende",
+      "default": "Bringe die Wörter in die richtige Reihenfolge."
+    },
+    {
+      "label": "Text",
+      "description": "Reihenfolge-Modus: Gib pro Zeile einen Satz ein. Jedes Wort erhält ein eigenes Feld, Satzzeichen bleiben an ihrem Platz, und Markierungen halten mehrwörtige Phrasen als eine Kachel zusammen, z. B. Er lebt in [New York]. Lücken-Modi (Tippen, Dropdown, Ziehen): Markiere Antworten mit Markierungen, z. B. [Antwort], [Antwort|Alternative] oder [!!] für eine leere richtige Antwort. Die Markierungssymbole werden nicht als Teil des Textes angezeigt.",
+      "default": "Heute ist ein schöner Tag."
+    },
+    {
+      "label": "Zusätzliche Antwortoptionen",
+      "description": "Ablenkwörter oder -antworten. Im Modus „In Lücken ziehen / Gesamter Text” gehört jede Zeile hier zur entsprechenden Zeile / zum entsprechenden Absatz im Feld „Text”; Enter trennt Sätze/Absätze. Lassen Sie eine Zeile leer, wenn die entsprechende Text-Zeile keine zusätzlichen Optionen erhalten soll. Wenn zusätzliche Optionen nur zur zweiten Text-Zeile gehören sollen, schreiben Sie sie hier in die zweite Zeile. Zusätzliche Optionen in derselben Zeile mit Kommas trennen. In den anderen Antwortmodi können Optionen mit Kommas oder Zeilenumbrüchen getrennt werden."
+    },
+    {
+      "label": "Dropdown-Antwortoptionen",
+      "description": "Nur im Dropdown-Modus: Wähle, wie viele Antwortoptionen jedes Dropdown zeigt.",
+      "default": "some",
+      "options": [
+        {
+          "label": "Einige Antwortoptionen"
+        },
+        {
+          "label": "Alle Antwortoptionen"
+        }
+      ]
+    },
+    {
+      "label": "Wie viele Antwortoptionen?",
+      "description": "Wie viele Optionen jedes Dropdown zeigt, gezogen aus dem gesamten Pool von Antworten und Ablenkungen. Die richtige Antwort ist immer dabei."
+    },
+    {
+      "label": "Position der Antwortoptionen",
+      "description": "Wähle, wo die Wortbank / ziehbaren Antworten angezeigt werden.",
+      "default": "bottom",
+      "options": [
+        {
+          "label": "Unter dem Text"
+        },
+        {
+          "label": "Über dem Text"
+        },
+        {
+          "label": "Unter und über dem Text"
+        }
+      ]
+    },
+    {
+      "label": "Bild hinzufügen",
+      "description": "Optionales Bild, das über oder links vom Antworttext angezeigt wird. Datei hochladen oder Bild-URL einfügen.",
+      "fields": [
+        {
+          "label": "Bild (Hochladen)"
+        },
+        {
+          "label": "Bild-URL",
+          "description": "Wird nur verwendet, wenn oben kein Bild hochgeladen wurde. Vollständige https://-Adresse einfügen."
+        },
+        {
+          "label": "Alternativtext"
+        },
+        {
+          "label": "Bildposition",
+          "options": [
+            {
+              "label": "Über dem Text"
+            },
+            {
+              "label": "Links vom Text"
+            }
+          ]
+        },
+        {
+          "label": "Breiteneinheit",
+          "options": [
+            {
+              "label": "%"
+            },
+            {
+              "label": "px"
+            }
+          ]
+        },
+        {
+          "label": "Bildbreite",
+          "description": "Leer lassen, um die Originalgröße des Bildes zu verwenden. Das Seitenverhältnis bleibt immer erhalten."
+        }
+      ]
+    },
+    {
+      "label": "Zeilenbilder",
+      "description": "Füge ein Bild für eine Textzeile hinzu. Das erste Element gehört zur ersten Zeile, das zweite zur zweiten Zeile usw. Lasse ein Element leer, um diese Zeile zu überspringen.",
+      "entity": "Zeile",
+      "field": {
+        "label": "Zeilenbild",
+        "fields": [
+          {
+            "label": "Bild (Hochladen)"
+          },
+          {
+            "label": "Bild-URL",
+            "description": "Wird nur verwendet, wenn oben kein Bild hochgeladen wurde. Vollständige https://-Adresse einfügen."
+          },
+          {
+            "label": "Alternativtext"
+          },
+          {
+            "label": "Bildposition",
+            "options": [
+              {
+                "label": "Über dem Text"
+              },
+              {
+                "label": "Links vom Text"
+              }
+            ]
+          },
+          {
+            "label": "Breiteneinheit",
+            "options": [
+              {
+                "label": "%"
+              },
+              {
+                "label": "px"
+              }
+            ]
+          },
+          {
+            "label": "Bildbreite",
+            "description": "Leer lassen, um die Originalgröße des Bildes zu verwenden. Das Seitenverhältnis bleibt immer erhalten."
+          }
+        ]
+      }
+    },
+    {
+      "label": "Verhaltenseinstellungen",
+      "fields": [
+        {
+          "label": "Markierungen",
+          "description": "Markierungspaar. In Lücken-Modi markiert es die bewerteten Antworten; im Reihenfolge-Modus hält es mehrwörtige Phrasen als eine Kachel zusammen.",
+          "default": "[]",
+          "options": [
+            {
+              "label": "[ ]  –  [Antwort]"
+            },
+            {
+              "label": "{ }  –  {Antwort}"
+            },
+            {
+              "label": "# #  –  #Antwort#"
+            },
+            {
+              "label": "@ @  –  @Antwort@"
+            },
+            {
+              "label": "* *  –  *Antwort*"
+            }
+          ]
+        },
+        {
+          "label": "Trennzeichen für Alternativantworten",
+          "description": "In Lücken-Modi innerhalb einer markierten Antwort verwenden, z. B. [Katze|Hund].",
+          "default": "|"
+        },
+        {
+          "label": "Antwortoptionen mischen",
+          "description": "Mischt die Wortbank im Reihenfolge-Modus und die Optionen in den Modi Dropdown und Ziehen."
+        },
+        {
+          "label": "Bewertung im Reihenfolge-Modus",
+          "description": "Wähle, ob jedes richtig platzierte Wort oder jeder vollständig richtige Satz einen Punkt gibt. Lücken-Modi geben immer einen Punkt pro Lücke.",
+          "default": "position",
+          "options": [
+            {
+              "label": "Ein Punkt pro Wort im richtigen Feld"
+            },
+            {
+              "label": "Ein Punkt pro vollständig richtigem Satz"
+            }
+          ]
+        },
+        {
+          "label": "Lücken- und Feldbreite",
+          "description": "Wähle, ob alle Lücken/Felder gleich breit sind oder jede Breite der Antwortlänge folgt. Gilt für die Modi Reihenfolge, Tippen und Ziehen.",
+          "default": "byAnswer",
+          "options": [
+            {
+              "label": "Breite folgt der Antwortlänge"
+            },
+            {
+              "label": "Alle Lücken/Felder gleich breit"
+            }
+          ]
+        },
+        {
+          "label": "Wiederholen erlauben"
+        },
+        {
+          "label": "Fehlende Antworten anzeigen",
+          "description": "Beim Überprüfen werden auch die Antworten angezeigt, die der Lernende nicht richtig gegeben hat (die orange markierten). Ausschalten, um sie zu verbergen."
+        }
+      ]
+    },
+    {
+      "label": "Texte und Übersetzungen",
+      "fields": [
+        {
+          "label": "Text des Überprüfen-Buttons",
+          "default": "Überprüfen"
+        },
+        {
+          "label": "Text des Wiederholen-Buttons",
+          "default": "Erneut versuchen"
+        },
+        {
+          "label": "Rückmeldung bei vollständig richtiger Antwort",
+          "default": "Alles richtig!"
+        },
+        {
+          "label": "Ergebnistext",
+          "description": "Verfügbare Variablen: @score und @max.",
+          "default": "Ergebnis: @score / @max"
+        },
+        {
+          "label": "Text für richtige Anzahl",
+          "description": "Verfügbare Variable: @count.",
+          "default": "Richtig: @count"
+        },
+        {
+          "label": "Text für falsche Anzahl",
+          "description": "Verfügbare Variable: @count.",
+          "default": "Falsch: @count"
+        },
+        {
+          "label": "Text für fehlende Anzahl",
+          "description": "Verfügbare Variable: @count.",
+          "default": "Fehlend: @count"
+        },
+        {
+          "label": "Meldung bei leerem Inhalt",
+          "default": "Der Autor hat keinen Text hinzugefügt."
+        },
+        {
+          "label": "Präfix für richtige Antwort",
+          "default": "Richtige Antwort:"
+        },
+        {
+          "label": "Dropdown-Platzhalter",
+          "default": "wählen..."
+        },
+        {
+          "label": "Bezeichnung für leere Antwort",
+          "default": "leer"
+        },
+        {
+          "label": "Barrierefreiheits-Label der Lücke",
+          "description": "Die Variable @num wird durch die Lückennummer ersetzt.",
+          "default": "Antwortfeld @num"
+        },
+        {
+          "label": "Bezeichnung für überflüssigen Text",
+          "default": "Überflüssiger Text"
+        },
+        {
+          "label": "Bezeichnung für fehlenden Text",
+          "default": "Fehlender Text"
+        },
+        {
+          "label": "Barrierefreiheits-Label der Wortbank",
+          "default": "Wortbank"
+        },
+        {
+          "label": "Barrierefreiheits-Label des Wortfelds",
+          "description": "Die Variable @num wird durch die Feldnummer ersetzt.",
+          "default": "Wortfeld @num"
+        },
+        {
+          "label": "Satzüberschrift",
+          "description": "Wird angezeigt, wenn es mehr als einen Satz gibt. Die Variable @num wird durch die Satznummer ersetzt.",
+          "default": "Satz @num"
+        },
+        {
+          "label": "Hinweis zum Hinzufügen eines Wortes",
+          "default": "Wort zur Antwort hinzufügen"
+        },
+        {
+          "label": "Hinweis zum Entfernen eines Wortes",
+          "default": "Wort aus der Antwort entfernen"
+        }
+      ]
+    }
+  ]
+}

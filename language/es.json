@@ -1,0 +1,322 @@
+{
+  "semantics": [
+    {
+      "label": "Modo de respuesta",
+      "default": "drag",
+      "options": [
+        {
+          "label": "Arrastrar a los huecos"
+        },
+        {
+          "label": "Escribir en los huecos"
+        },
+        {
+          "label": "Elegir del desplegable"
+        }
+      ]
+    },
+    {
+      "label": "¿Qué palabras?",
+      "default": "all",
+      "options": [
+        {
+          "label": "Solo las palabras marcadas con marcadores"
+        },
+        {
+          "label": "Texto completo"
+        }
+      ]
+    },
+    {
+      "label": "Instrucciones para el estudiante",
+      "default": "Ordena las palabras en el orden correcto."
+    },
+    {
+      "label": "Texto",
+      "description": "Modo de ordenación: introduce una oración por línea. Cada palabra recibe su propia casilla, la puntuación se queda en su lugar y los marcadores mantienen una frase de varias palabras como una sola ficha, p. ej. Vive en [Nueva York]. Modos de huecos (escribir, desplegable, arrastrar): usa marcadores para marcar las respuestas, p. ej. [respuesta], [respuesta|alternativa] o [!!] para una respuesta correcta vacía. Los símbolos de marcador no se muestran como parte del texto.",
+      "default": "Hoy es un día bonito."
+    },
+    {
+      "label": "Opciones de respuesta adicionales",
+      "description": "Palabras o respuestas distractoras. En el modo “Arrastrar a los huecos / Texto completo”, cada línea aquí corresponde a la misma línea/párrafo del campo “Texto”; Enter separa frases/párrafos. Deje una línea vacía si esa línea de Texto no debe recibir opciones adicionales. Si necesita opciones adicionales solo para la segunda línea de Texto, escríbalas aquí en la segunda línea. Separe las opciones adicionales de la misma línea con comas. En los otros modos, las opciones pueden separarse con comas o saltos de línea."
+    },
+    {
+      "label": "Opciones del menú desplegable",
+      "description": "Solo en modo desplegable: elige cuántas opciones de respuesta muestra cada desplegable.",
+      "default": "some",
+      "options": [
+        {
+          "label": "Algunas opciones de respuesta"
+        },
+        {
+          "label": "Todas las opciones de respuesta"
+        }
+      ]
+    },
+    {
+      "label": "¿Cuántas opciones de respuesta?",
+      "description": "Cuántas opciones muestra cada desplegable, tomadas del conjunto total de respuestas y distractores. La respuesta correcta siempre se incluye."
+    },
+    {
+      "label": "Posición de las opciones de respuesta",
+      "description": "Elige dónde se muestran el banco de palabras / las respuestas arrastrables.",
+      "default": "bottom",
+      "options": [
+        {
+          "label": "Debajo del texto"
+        },
+        {
+          "label": "Encima del texto"
+        },
+        {
+          "label": "Debajo y encima del texto"
+        }
+      ]
+    },
+    {
+      "label": "Añadir imagen",
+      "description": "Imagen opcional que se muestra encima o a la izquierda del texto de respuesta. Sube un archivo o pega una URL de imagen.",
+      "fields": [
+        {
+          "label": "Imagen (subir)"
+        },
+        {
+          "label": "URL de la imagen",
+          "description": "Se usa solo si no se ha subido ninguna imagen arriba. Pega una dirección https:// completa."
+        },
+        {
+          "label": "Texto alternativo"
+        },
+        {
+          "label": "Posición de la imagen",
+          "options": [
+            {
+              "label": "Encima del texto"
+            },
+            {
+              "label": "A la izquierda del texto"
+            }
+          ]
+        },
+        {
+          "label": "Unidad de ancho",
+          "options": [
+            {
+              "label": "%"
+            },
+            {
+              "label": "px"
+            }
+          ]
+        },
+        {
+          "label": "Ancho de la imagen",
+          "description": "Déjalo vacío para usar el tamaño original de la imagen. La relación de aspecto siempre se mantiene."
+        }
+      ]
+    },
+    {
+      "label": "Imágenes por línea",
+      "description": "Añade una imagen para una línea del texto. El primer elemento corresponde a la primera línea, el segundo a la segunda, y así sucesivamente. Deja un elemento vacío para omitir esa línea.",
+      "entity": "línea",
+      "field": {
+        "label": "Imagen de línea",
+        "fields": [
+          {
+            "label": "Imagen (subir)"
+          },
+          {
+            "label": "URL de la imagen",
+            "description": "Se usa solo si no se ha subido ninguna imagen arriba. Pega una dirección https:// completa."
+          },
+          {
+            "label": "Texto alternativo"
+          },
+          {
+            "label": "Posición de la imagen",
+            "options": [
+              {
+                "label": "Encima del texto"
+              },
+              {
+                "label": "A la izquierda del texto"
+              }
+            ]
+          },
+          {
+            "label": "Unidad de ancho",
+            "options": [
+              {
+                "label": "%"
+              },
+              {
+                "label": "px"
+              }
+            ]
+          },
+          {
+            "label": "Ancho de la imagen",
+            "description": "Déjalo vacío para usar el tamaño original de la imagen. La relación de aspecto siempre se mantiene."
+          }
+        ]
+      }
+    },
+    {
+      "label": "Ajustes de comportamiento",
+      "fields": [
+        {
+          "label": "Marcadores",
+          "description": "Par de marcadores. En los modos de huecos marca las respuestas puntuadas; en el modo de ordenación mantiene una frase de varias palabras como una sola ficha.",
+          "default": "[]",
+          "options": [
+            {
+              "label": "[ ]  –  [respuesta]"
+            },
+            {
+              "label": "{ }  –  {respuesta}"
+            },
+            {
+              "label": "# #  –  #respuesta#"
+            },
+            {
+              "label": "@ @  –  @respuesta@"
+            },
+            {
+              "label": "* *  –  *respuesta*"
+            }
+          ]
+        },
+        {
+          "label": "Separador de respuestas alternativas",
+          "description": "Úsalo dentro de una respuesta marcada en los modos de huecos, p. ej. [gato|perro].",
+          "default": "|"
+        },
+        {
+          "label": "Mezclar las opciones de respuesta",
+          "description": "Mezcla el banco de palabras en el modo de ordenación y las opciones en los modos desplegable y de arrastre."
+        },
+        {
+          "label": "Puntuación en el modo de ordenación",
+          "description": "Elige si cada palabra colocada correctamente da un punto o cada oración completamente correcta da un punto. Los modos de huecos siempre dan un punto por hueco.",
+          "default": "position",
+          "options": [
+            {
+              "label": "Un punto por palabra en la casilla correcta"
+            },
+            {
+              "label": "Un punto por oración completamente correcta"
+            }
+          ]
+        },
+        {
+          "label": "Ancho de huecos y casillas",
+          "description": "Elige si todos los huecos/casillas tienen el mismo ancho o si cada ancho sigue la longitud de su respuesta. Se aplica a los modos de ordenación, escritura y arrastre.",
+          "default": "byAnswer",
+          "options": [
+            {
+              "label": "El ancho depende de la longitud de la respuesta"
+            },
+            {
+              "label": "Todos los huecos/casillas con el mismo ancho"
+            }
+          ]
+        },
+        {
+          "label": "Permitir reintentar"
+        },
+        {
+          "label": "Mostrar las respuestas faltantes",
+          "description": "Al comprobar, también se muestran las respuestas que el estudiante no dio correctamente (las marcadas en naranja). Desactiva para ocultarlas."
+        }
+      ]
+    },
+    {
+      "label": "Textos y traducciones",
+      "fields": [
+        {
+          "label": "Texto del botón de comprobar",
+          "default": "Comprobar"
+        },
+        {
+          "label": "Texto del botón de reintentar",
+          "default": "Inténtalo de nuevo"
+        },
+        {
+          "label": "Comentario para una respuesta totalmente correcta",
+          "default": "¡Todo correcto!"
+        },
+        {
+          "label": "Texto del resultado",
+          "description": "Variables disponibles: @score y @max.",
+          "default": "Resultado: @score / @max"
+        },
+        {
+          "label": "Texto del número de aciertos",
+          "description": "Variable disponible: @count.",
+          "default": "Correctas: @count"
+        },
+        {
+          "label": "Texto del número de errores",
+          "description": "Variable disponible: @count.",
+          "default": "Incorrectas: @count"
+        },
+        {
+          "label": "Texto del número de faltantes",
+          "description": "Variable disponible: @count.",
+          "default": "Faltantes: @count"
+        },
+        {
+          "label": "Mensaje de contenido vacío",
+          "default": "El autor no ha añadido ningún texto."
+        },
+        {
+          "label": "Prefijo de la respuesta correcta",
+          "default": "Respuesta correcta:"
+        },
+        {
+          "label": "Marcador del desplegable",
+          "default": "elige..."
+        },
+        {
+          "label": "Etiqueta de respuesta vacía",
+          "default": "vacío"
+        },
+        {
+          "label": "Etiqueta de accesibilidad del hueco",
+          "description": "La variable @num se sustituye por el número del hueco.",
+          "default": "Campo de respuesta @num"
+        },
+        {
+          "label": "Etiqueta de texto sobrante",
+          "default": "Texto sobrante"
+        },
+        {
+          "label": "Etiqueta de texto faltante",
+          "default": "Texto faltante"
+        },
+        {
+          "label": "Etiqueta de accesibilidad del banco de palabras",
+          "default": "Banco de palabras"
+        },
+        {
+          "label": "Etiqueta de accesibilidad de la casilla",
+          "description": "La variable @num se sustituye por el número de la casilla.",
+          "default": "Casilla de palabra @num"
+        },
+        {
+          "label": "Encabezado de la oración",
+          "description": "Se muestra cuando hay más de una oración. La variable @num se sustituye por el número de oración.",
+          "default": "Oración @num"
+        },
+        {
+          "label": "Pista para añadir una palabra",
+          "default": "Añadir la palabra a la respuesta"
+        },
+        {
+          "label": "Pista para quitar una palabra",
+          "default": "Quitar la palabra de la respuesta"
+        }
+      ]
+    }
+  ]
+}
