@@ -23,6 +23,10 @@
     removeWord: 'Remove word from the answer'
   };
 
+  // xAPI fill-in aruande vorming (mod_hvp / h5p-php-report FillInProcessor).
+  var XAPI_FILL_IN_PLACEHOLDER = '__________';
+  var XAPI_RESPONSES_SEPARATOR = '[,]';
+
   var DEFAULTS = {
     taskDescription: 'Paiguta sõnad õigesse kohta.',
     correctText: 'Täna on ilus päev.',
@@ -242,10 +246,47 @@
 
     definition.name[languageTag] = this.getTitle();
     definition.name['en-US'] = definition.name[languageTag];
-    definition.description[languageTag] = this.getDescription();
+    definition.description[languageTag] = this.getXAPIReportDescription();
     definition.description['en-US'] = definition.description[languageTag];
 
     return definition;
+  };
+
+  /**
+   * Aruande kirjeldus: ülesande juhend ja tekst, kus iga lünk (lüngarežiimid)
+   * või sõnalahter (order-režiim) on asendatud xAPI fill-in kohatäitjaga.
+   * Kohatäitjate järjekord ühtib vastuse ja õige vastuse mustri järjekorraga.
+   */
+  OrderWords.prototype.getXAPIReportDescription = function () {
+    var html = '';
+    var task = stripTags(this.params.taskDescription || '').replace(/\s+/g, ' ').trim();
+    var text = '';
+
+    if (task) {
+      html += '<p>' + escapeHtml(task) + '</p>';
+    }
+
+    if (isGapMode(this)) {
+      if (this.correct && this.correct.segments) {
+        this.correct.segments.forEach(function (segment) {
+          text += segment.type === 'text' ? escapeHtml(segment.text) : XAPI_FILL_IN_PLACEHOLDER;
+        });
+      }
+      text.split(/\r?\n/).forEach(function (line) {
+        html += '<p>' + line + '</p>';
+      });
+    }
+    else {
+      (this.sentences || []).forEach(function (sentence) {
+        var line = '';
+        (sentence.segments || []).forEach(function (segment) {
+          line += segment.type === 'static' ? escapeHtml(segment.text) : XAPI_FILL_IN_PLACEHOLDER;
+        });
+        html += '<p>' + line + '</p>';
+      });
+    }
+
+    return html;
   };
 
   OrderWords.prototype.getXAPIResponse = function () {
@@ -259,24 +300,17 @@
     var values = this.lastResult && this.lastResult.gapValues
       ? this.lastResult.gapValues
       : (this.wrapper ? getGapResponses(this) : []);
-    var gapIndex = 0;
-    var output = '';
+    var answers = [];
 
-    if (!this.correct || !this.correct.segments) {
+    if (!this.correct || !this.correct.gaps) {
       return '';
     }
 
-    this.correct.segments.forEach(function (segment) {
-      if (segment.type === 'text') {
-        output += segment.text;
-      }
-      else {
-        output += values[gapIndex] || '';
-        gapIndex++;
-      }
+    this.correct.gaps.forEach(function (gap, index) {
+      answers.push(String(values[index] || ''));
     });
 
-    return output;
+    return answers.join(XAPI_RESPONSES_SEPARATOR);
   };
 
   OrderWords.prototype.getXAPIOrderResponse = function () {
@@ -284,23 +318,19 @@
       ? this.lastResult.orderValues
       : (this.wrapper ? getOrderResponses(this) : []);
 
-    return (this.sentences || []).map(function (sentence, sentenceIndex) {
-      var slotIndex = 0;
+    var answers = [];
+
+    (this.sentences || []).forEach(function (sentence, sentenceIndex) {
       var values = responses[sentenceIndex] || [];
-      var output = '';
 
       (sentence.segments || []).forEach(function (segment) {
-        if (segment.type === 'static') {
-          output += segment.text;
-        }
-        else {
-          output += values[slotIndex] || '';
-          slotIndex++;
+        if (segment.type === 'slot') {
+          answers.push(String(values[segment.slot] || ''));
         }
       });
+    });
 
-      return output;
-    }).join('\n');
+    return answers.join(XAPI_RESPONSES_SEPARATOR);
   };
 
   OrderWords.prototype.getXAPICorrectResponsesPattern = function () {
@@ -2569,88 +2599,69 @@
   }
 
   function buildGapCorrectResponses(self) {
-    var alternatives = [''];
-
-    if (!self.correct || !self.correct.segments) {
+    if (!self.correct || !self.correct.gaps) {
       return [''];
     }
 
-    self.correct.segments.forEach(function (segment) {
-      if (segment.type === 'text') {
-        alternatives = appendXAPIFragmentAlternatives(alternatives, [segment.text]);
-      }
-      else {
-        alternatives = appendXAPIFragmentAlternatives(alternatives, segment.answers || ['']);
-      }
-    });
-
-    return alternatives.length ? alternatives : [''];
+    return buildXAPICorrectResponseRows(self.correct.gaps.map(function (gap) {
+      return gap.answers;
+    }));
   }
 
   function buildOrderCorrectResponses(self) {
-    var sentenceAlternatives = [];
+    var slotAnswers = [];
 
     (self.sentences || []).forEach(function (sentence) {
-      var alternatives = [''];
-
       (sentence.segments || []).forEach(function (segment) {
-        if (segment.type === 'static') {
-          alternatives = appendXAPIFragmentAlternatives(alternatives, [segment.text]);
-        }
-        else {
-          alternatives = appendXAPIFragmentAlternatives(alternatives, getOrderSlotAnswers(sentence, segment.slot));
+        if (segment.type === 'slot') {
+          slotAnswers.push(getOrderSlotAnswers(sentence, segment.slot));
         }
       });
-
-      sentenceAlternatives.push(alternatives.length ? alternatives : ['']);
     });
 
-    if (!sentenceAlternatives.length) {
+    return buildXAPICorrectResponseRows(slotAnswers);
+  }
+
+  /**
+   * Õige vastuse muster lünkade kaupa ([,]-eraldajaga). Lünga alternatiivid
+   * jaotatakse ridadeks: rida j sisaldab iga lünga j-ndat alternatiivi (või
+   * viimast, kui alternatiive on vähem). Aruanne koondab read lünga kaupa,
+   * seega kombinatsioonide korrutist ei teki.
+   *
+   * @param {Array<string[]>} gapAnswers
+   * @returns {string[]}
+   */
+  function buildXAPICorrectResponseRows(gapAnswers) {
+    var rows = [];
+    var rowCount = 1;
+    var row;
+
+    if (!gapAnswers.length) {
       return [''];
     }
 
-    return combineXAPILineAlternatives(sentenceAlternatives, 0, ['']);
-  }
-
-  function appendXAPIFragmentAlternatives(base, fragments) {
-    var output = [];
-    var seen = {};
-
-    base = base && base.length ? base : [''];
-    fragments = fragments && fragments.length ? fragments : [''];
-
-    base.forEach(function (prefix) {
-      fragments.forEach(function (fragment) {
-        var value = prefix + String(fragment || '');
-        if (!seen[value]) {
-          seen[value] = true;
-          output.push(value);
-        }
-      });
+    gapAnswers = gapAnswers.map(function (answers) {
+      return answers && answers.length ? answers : [''];
+    });
+    gapAnswers.forEach(function (answers) {
+      rowCount = Math.max(rowCount, answers.length);
     });
 
-    return output;
-  }
-
-  function combineXAPILineAlternatives(lines, index, prefixes) {
-    var output = [];
-    var seen = {};
-
-    if (index >= lines.length) {
-      return prefixes;
+    for (row = 0; row < rowCount; row++) {
+      rows.push(gapAnswers.map(function (answers) {
+        return String(answers[Math.min(row, answers.length - 1)] || '');
+      }).join(XAPI_RESPONSES_SEPARATOR));
     }
 
-    prefixes.forEach(function (prefix) {
-      (lines[index] || ['']).forEach(function (line) {
-        var value = prefix + (prefix === '' ? '' : '\n') + line;
-        if (!seen[value]) {
-          seen[value] = true;
-          output.push(value);
-        }
-      });
-    });
+    return rows;
+  }
 
-    return combineXAPILineAlternatives(lines, index + 1, output);
+  function escapeHtml(text) {
+    return String(text || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
   function extendObject(target, source) {
